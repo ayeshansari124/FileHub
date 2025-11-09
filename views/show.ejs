@@ -1,15 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>View File</title>
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-</head>
-<body class="bg-zinc-900 min-h-screen text-white p-10">
-  <button onclick="window.location.href='/'"
-          class="mb-4 px-4 py-2 bg-blue-600 rounded">Back to Home</button>
-  <div class="title text-lg font-bold mb-2"><%= filename %></div>
-  <div class="desc text-sm font-semibold whitespace-pre-line bg-gray-800 p-4 rounded"><%= filedata %></div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ViewHub</title>
+    <link rel="icon" type="image/png" href="/images/favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        z-index: -1;
+      }
+    </style>
+  </head>
+
+  <body
+    class="min-h-screen bg-fixed bg-cover bg-center text-white flex flex-col items-center"
+    style="background-image: url('/images/bg.png');"
+  >
+    <!-- Back Button -->
+    <div class="w-full max-w-6xl px-8 py-10">
+      <button
+        onclick="window.location.href='/'"
+        class="px-5 py-2 bg-blue-700 hover:bg-blue-900 rounded-lg font-semibold transition duration-300 shadow-md"
+      >
+        ← Back to Home
+      </button>
+    </div>
+
+    <!-- File Display Container -->
+    <div
+      class="relative w-full max-w-4xl mx-auto p-10 rounded-2xl shadow-2xl border border-white/10 overflow-hidden mb-16"
+    >
+      <!-- Background image layer -->
+      <div
+        class="absolute inset-0 bg-cover bg-center"
+        style="background-image: url('/images/top-bg.svg'); filter: brightness(1.1) contrast(1.05);"
+      ></div>
+      <!-- Glass overlay -->
+      <div class="absolute inset-0 bg-black/50 backdrop-blur-md"></div>
+
+      <!-- Foreground content -->
+      <div class="relative">
+        <h1 class="text-3xl font-extrabold mb-6 tracking-wide text-center">
+          <%= filename %>
+        </h1>
+
+        <div
+          class="desc text-base leading-relaxed whitespace-pre-line bg-white/10 border border-white/10 p-6 rounded-xl backdrop-blur-sm"
+        >
+          <%= filedata %>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

@@ -3,61 +3,120 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>File Manager</title>
+    <title>FileHub</title>
+    <link rel="icon" type="image/png" href="/images/favicon.ico">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+      /* Overlay to enhance contrast between bg and content */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        z-index: -1;
+      }
+    </style>
   </head>
-  <body class="min-h-screen bg-gray-900 text-white">
-    <div class="container mx-auto py-10">
-      <!-- Upload Form -->
-      <form
-        action="/upload"
-        method="post"
-        class="flex flex-col gap-4 bg-gray-800 p-6 rounded-lg w-full max-w-lg mx-10"
-      >
-        <input
-          name="title"
-          type="text"
-          placeholder="Enter Title"
-          class="p-4 rounded-lg placeholder:text-white outline-none focus:ring-2 focus:ring-red-300 bg-gray-700"
-          required
-        />
-        <textarea
-          name="desc"
-          placeholder="Enter The Description"
-          class="p-4 rounded-lg h-40 resize-none placeholder:text-white outline-none focus:ring-2 focus:ring-blue-300 bg-gray-700"
-          required
-        ></textarea>
-        <button
-          class="bg-green-700 hover:bg-green-900 px-5 py-3 rounded-lg w-fit font-bold transition-colors duration-300 cursor-pointer"
-        >
-          Create File
-        </button>
-      </form>
 
-      <!-- Files -->
+  <body
+    class="min-h-screen bg-fixed bg-cover bg-center text-white flex flex-col items-center"
+    style="background-image: url('/images/bg.png');"
+  >
+    <div class="container mx-auto py-16 px-4 w-full max-w-6xl">
+      <!-- Upload Form -->
       <div
-        class="cards-container mt-10 p-6 rounded-lg flex flex-wrap gap-6 justify-start ml-5"
+        class="relative w-full max-w-2xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-white/10 mb-16"
+      >
+        <!-- Background -->
+        <div
+          class="absolute inset-0 bg-cover bg-center"
+          style="background-image: url('/images/section.svg'); filter: brightness(1.1) contrast(1.05);"
+        ></div>
+        <!-- Glass layer -->
+        <div class="absolute inset-0 bg-black/40 backdrop-blur-md"></div>
+
+        <!-- Form -->
+        <form
+          action="/upload"
+          method="post"
+          class="relative flex flex-col gap-5 p-8"
+        >
+          <h2 class="text-2xl font-bold text-center mb-2 tracking-wide">
+            Create New File
+          </h2>
+          <input
+            name="title"
+            type="text"
+            placeholder="Enter Title"
+            class="p-4 rounded-lg bg-white/10 placeholder:text-gray-300 focus:ring-2 focus:ring-blue-400 outline-none transition"
+            required
+          />
+          <textarea
+            name="desc"
+            placeholder="Enter Description"
+            class="p-4 h-40 rounded-lg bg-white/10 placeholder:text-gray-300 focus:ring-2 focus:ring-blue-400 outline-none resize-none transition"
+            required
+          ></textarea>
+          <button
+            class="bg-blue-600 hover:bg-blue-800 px-6 py-3 rounded-lg font-bold transition-colors duration-300"
+          >
+            Create File
+          </button>
+        </form>
+      </div>
+
+      <!-- Files Section -->
+      <div
+        class="cards-container flex flex-wrap gap-8 justify-center"
       >
         <% if (files && files.length > 0) { %>
-          <% files.forEach(filename => { %>
-            <div
-              class="card p-5 rounded-lg w-auto shadow-lg hover:scale-105 transition-transform duration-300 bg-gray-800 cursor-pointer"
-            >
-              <div class="title text-lg font-bold mb-2"><%= filename %></div>
-              <div class="flex gap-3 flex-wrap">
-                <button class="font-bold bg-green-900 px-3 py-2 rounded hover:bg-green-700"
-                        onclick="window.location.href='/files/<%= filename %>'">Read</button>
-                <button class="font-bold bg-yellow-900 px-5 py-2 rounded hover:bg-yellow-700"
-                        onclick="window.location.href='/edit-content/<%= filename %>'">Edit Content</button>
-                <button class="font-bold bg-blue-900 px-5 py-2 rounded hover:bg-blue-700"
-                        onclick="window.location.href='/edit/<%= filename %>'">Rename</button>
-                <button class="font-bold bg-red-900 px-5 py-2 rounded hover:bg-red-700"
-                        onclick="window.location.href='/delete/<%= filename %>'">Delete</button>
-              </div>
+        <% files.forEach(filename => { %>
+        <div
+          class="relative w-80 p-6 rounded-2xl shadow-lg overflow-hidden border border-white/10 transition-transform duration-300 hover:scale-105 hover:shadow-2xl"
+        >
+          <!-- Background -->
+          <div
+            class="absolute inset-0 bg-cover bg-center"
+            style="background-image: url('/images/section.svg'); filter: brightness(1.15) contrast(1.05);"
+          ></div>
+          <!-- Glass layer -->
+          <div class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+
+          <div class="relative flex flex-col gap-4">
+            <div class="text-lg font-semibold truncate">
+              <%= filename %>
             </div>
-          <% }) %>
-        <% } else { %>
-          <div class="font-bold text-lg">No files yet</div>
+            <div class="flex flex-wrap gap-3 justify-between items-center">
+              <div class="flex flex-wrap gap-3 justify-between items-center">
+  <button
+    class="bg-green-600 hover:bg-green-500 px-4 py-2 rounded-lg font-semibold transition"
+    onclick="window.location.href='/files/<%= filename %>'"
+  >
+    Read
+  </button>
+  
+  <button
+    class="bg-yellow-600 hover:bg-yellow-500 px-4 py-2 rounded-lg font-semibold transition"
+    onclick="window.location.href='/edit/<%= filename %>'"
+  >
+    Edit
+  </button>
+  
+  <button
+    class="bg-red-600 hover:bg-red-500 px-4 py-2 rounded-lg font-semibold transition"
+    onclick="window.location.href='/delete/<%= filename %>'"
+  >
+    Delete
+  </button>
+</div>
+
+            </div>
+          </div>
+        </div>
+        <% }) %> <% } else { %>
+        <div class="font-bold text-lg text-center mt-10">
+          No files yet
+        </div>
         <% } %>
       </div>
     </div>
