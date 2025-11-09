@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>View File</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-zinc-900 min-h-screen text-white p-10">
+  <button onclick="window.location.href='/'"
+          class="mb-4 px-4 py-2 bg-blue-600 rounded">Back to Home</button>
+  <div class="title text-lg font-bold mb-2"><%= filename %></div>
+  <div class="desc text-sm font-semibold whitespace-pre-line bg-gray-800 p-4 rounded"><%= filedata %></div>
+</body>
+</html>

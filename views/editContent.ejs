@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit Content</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-zinc-900 min-h-screen text-white">
+  <button onclick="window.location.href='/'"
+          class="m-10 px-4 py-2 bg-blue-700 rounded hover:bg-blue-900">Back</button>
+
+  <form action="/edit-content" method="post"
+        class="flex flex-col gap-4 bg-gray-800 p-6 rounded-lg w-full max-w-2xl mx-10">
+    <input type="hidden" name="filename" value="<%= filename %>">
+    <div class="text-xl font-bold mb-2"><%= filename %></div>
+    <textarea name="newContent"
+              class="p-4 rounded-lg h-80 resize-none text-white bg-gray-700 outline-none focus:ring-2 focus:ring-zinc-600"
+              required><%= filedata %></textarea>
+    <button class="bg-green-700 hover:bg-green-900 px-5 py-3 rounded-lg font-bold transition-colors duration-300">
+      Save Changes
+    </button>
+  </form>
+</body>
+</html>
