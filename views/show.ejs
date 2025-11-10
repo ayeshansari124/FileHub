@@ -1,88 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ViewHub</title>
+<div class="container mx-auto py-16 px-4 w-full max-w-4xl">
+  <div class="relative rounded-2xl shadow-2xl border border-white/10 overflow-hidden">
+    <!-- Background -->
+    <div
+      class="absolute inset-0 bg-cover bg-center"
+      style="background-image: url('/images/top-bg.svg'); filter: brightness(1.1) contrast(1.05);"
+    ></div>
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-md"></div>
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/images/favicon.ico" />
+    <article class="relative p-10">
+      <h1 class="text-3xl font-extrabold mb-6 tracking-wide text-center break-words">
+        <%= filename %>
+      </h1>
 
-    <!-- Google Font -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Sirin+Stencil&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
-    <!-- Global Styles -->
-    <style>
-      body {
-        font-family: "Sirin Stencil", sans-serif;
-      }
-
-      /* Overlay for better readability */
-      body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.45);
-        z-index: -1;
-      }
-    </style>
-  </head>
-
-  <body
-    class="min-h-screen flex flex-col items-center bg-fixed bg-cover bg-center text-white"
-    style="background-image: url('/images/bg.png');"
-  >
-    <!-- Back Button -->
-    <header class="w-full max-w-6xl px-8 py-10">
-      <button
-        onclick="window.location.href='/'"
-        class="px-5 py-2 bg-zinc-700 hover:bg-zinc-900 cursor-pointer rounded-full transition duration-300 shadow-md"
-      >
-        ← 
-      </button>
-    </header>
-
-    <!-- File Display Section -->
-    <main
-      class="relative w-full max-w-4xl mx-auto p-10 rounded-2xl shadow-2xl border border-white/10 overflow-hidden mb-16"
-    >
-      <!-- Background -->
-      <div
-        class="absolute inset-0 bg-cover bg-center"
-        style="
-          background-image: url('/images/top-bg.svg');
-          filter: brightness(1.1) contrast(1.05);
-        "
-      ></div>
-
-      <!-- Glass Overlay -->
-      <div class="absolute inset-0 bg-black/50 backdrop-blur-md"></div>
-
-      <!-- Foreground Content -->
-      <article class="relative">
-        <h1
-          class="text-3xl font-extrabold mb-6 tracking-wide text-center break-words"
-        >
-          <%= filename %>
-        </h1>
-
-        <div
-          class="text-base leading-relaxed whitespace-pre-line bg-white/10 border border-white/10 p-6 rounded-xl backdrop-blur-sm"
-        >
-          <%= filedata %>
-        </div>
-      </article>
-    </main>
-
-    <!-- Footer -->
-    <footer class="mt-20 pb-6 text-sm text-gray-400 text-center">
-      Built with 💜 by Ayesha
-    </footer>
-  </body>
-</html>
+      <div class="text-base leading-relaxed whitespace-pre-line bg-white/10 border border-white/10 p-6 rounded-xl backdrop-blur-sm">
+        <%= filedata %>
+      </div>
+    </article>
+  </div>
+</div>

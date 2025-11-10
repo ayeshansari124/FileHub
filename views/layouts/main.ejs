@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/images/favicon.ico" />
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sirin+Stencil&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Global Styles -->
+    <style>
+      body {
+        font-family: "Sirin Stencil", sans-serif;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        z-index: -1;
+      }
+    </style>
+  </head>
+
+  <body
+    class="min-h-screen flex flex-col items-center bg-fixed bg-cover bg-center text-white"
+    style="background-image: url('/images/bg.png');"
+  >
+    <!-- Header -->
+    <%- include('../partials/header') %>
+
+    <!-- Page Content -->
+    <main class="flex-1 w-full">
+      <%- body %>
+    </main>
+
+    <!-- Footer -->
+    <%- include('../partials/footer') %>
+  </body>
+</html>

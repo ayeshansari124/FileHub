@@ -1,127 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EditHub</title>
+<div class="container mx-auto py-16 px-4 w-full max-w-xl">
+  <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+    <!-- Background -->
+    <div
+      class="absolute inset-0 bg-cover bg-center"
+      style="background-image: url('/images/section.svg'); filter: brightness(1.1) contrast(1.05);"
+    ></div>
+    <div class="absolute inset-0 bg-black/40 backdrop-blur-md"></div>
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/images/favicon.ico" />
+    <form action="/edit" method="POST" class="relative flex flex-col gap-6 p-10">
+      <h1 class="text-3xl font-bold text-center mb-2 tracking-wide">Edit File</h1>
 
-    <!-- Google Font -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Sirin+Stencil&display=swap"
-      rel="stylesheet"
-    />
+      <!-- Hidden Old Filename -->
+      <input type="hidden" name="previousName" value="<%= filename %>" />
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+      <!-- Title -->
+      <div class="flex flex-col">
+        <label for="newName" class="font-semibold mb-2">File Title</label>
+        <input
+          id="newName"
+          name="newName"
+          type="text"
+          value="<%= filename %>"
+          required
+          class="p-4 rounded-lg bg-white/10 text-white placeholder:text-gray-300 outline-none focus:ring-2 focus:ring-blue-400 transition"
+        />
+      </div>
 
-    <!-- Base Styles -->
-    <style>
-      body {
-        font-family: "Sirin Stencil", sans-serif;
-      }
+      <!-- Description -->
+      <div class="flex flex-col">
+        <label for="description" class="font-semibold mb-2">Description</label>
+        <textarea
+          id="description"
+          name="description"
+          rows="6"
+          required
+          class="p-4 rounded-lg bg-white/10 text-white placeholder:text-gray-300 outline-none focus:ring-2 focus:ring-blue-400 resize-none transition"
+        ><%= description %></textarea>
+      </div>
 
-      /* Overlay for contrast */
-      body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.45);
-        z-index: -1;
-      }
-    </style>
-  </head>
-
-  <body
-    class="min-h-screen flex flex-col items-center justify-center p-6 bg-fixed bg-cover bg-center text-white"
-    style="background-image: url('/images/bg.png');"
-  >
-    <!-- Back Button -->
-    <button
-      onclick="window.location.href='/'"
-      class="absolute top-8 left-8 px-5 py-2 bg-zinc-700 hover:bg-zinc-900 cursor-pointer rounded-full transition-all duration-300 shadow-lg"
-    >
-      ←
-    </button>
-
-    <main
-      class="relative w-full max-w-2xl rounded-2xl overflow-hidden shadow-2xl border border-white/10"
-    >
-      <!-- Background -->
-      <div
-        class="absolute inset-0 bg-cover bg-center"
-        style="
-          background-image: url('/images/section.svg');
-          filter: brightness(1.1) contrast(1.05);
-        "
-      ></div>
-
-      <!-- Glass Overlay -->
-      <div class="absolute inset-0 bg-black/40 backdrop-blur-md"></div>
-
-      <!-- Edit Form -->
-      <form
-        action="/edit"
-        method="POST"
-        class="relative flex flex-col gap-6 p-10"
-      >
-        <h1 class="text-3xl font-bold text-center mb-2 tracking-wide">
-          Edit File
-        </h1>
-
-        <!-- Hidden old filename -->
-        <input type="hidden" name="previousName" value="<%= filename %>" />
-
-        <!-- Title Field -->
-        <div class="flex flex-col">
-          <label for="newName" class="font-semibold mb-2">File Title</label>
-          <input
-            id="newName"
-            name="newName"
-            type="text"
-            value="<%= filename %>"
-            required
-            class="p-4 rounded-lg bg-white/10 text-white placeholder:text-gray-300 outline-none focus:ring-2 focus:ring-blue-400 transition"
-          />
-        </div>
-
-        <!-- Description Field -->
-        <div class="flex flex-col">
-          <label for="description" class="font-semibold mb-2">Description</label>
-          <textarea
-            id="description"
-            name="description"
-            rows="6"
-            placeholder="Enter file description..."
-            required
-            class="p-4 rounded-lg bg-white/10 text-white placeholder:text-gray-300 outline-none focus:ring-2 focus:ring-blue-400 resize-none transition"
-          ><%= description %></textarea>
-        </div>
-
-        <!-- Action Buttons -->
-        <div class="flex justify-end gap-4 mt-4">
-          <button
-            type="button"
-            onclick="window.location.href='/'"
-            class="px-6 py-3 bg-gray-700 hover:bg-gray-600 cursor-pointer rounded-lg font-semibold transition"
-          >
-            Cancel
-          </button>
-          <button
-            type="submit"
-            class="px-6 py-3 bg-yellow-600 hover:bg-yellow-800 cursor-pointer rounded-lg font-bold transition-colors duration-300"
-          >
-            Save Changes
-          </button>
-        </div>
-      </form>
-    </main>
-
-    <!-- Footer -->
-    <footer class="mt-20 pb-6 text-sm text-gray-400 text-center">
-      Built with 💜 by Ayesha
-    </footer>
-  </body>
-</html>
+      <!-- Buttons -->
+      <div class="flex justify-end gap-4 mt-4">
+        <button
+          type="button"
+          onclick="window.location.href='/'"
+          class="px-6 py-3 bg-gray-700 hover:bg-gray-600 cursor-pointer font-semibold transition rounded-lg"
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          class="px-6 py-3 bg-yellow-600 hover:bg-yellow-800 cursor-pointer rounded-lg font-bold transition-colors duration-300"
+        >
+          Save Changes
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
