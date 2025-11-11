@@ -4,30 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= title %></title>
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/images/favicon.ico" />
-
-    <!-- Google Font -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Sirin+Stencil&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Tailwind CSS -->
+    <link rel="icon" href="images/favicon.ico" type="image/png" />
+    <link href="https://fonts.googleapis.com/css2?family=Sirin+Stencil&display=swap" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
-    <style>
-      body {
-        font-family: "Sirin Stencil", sans-serif;
-      }
-    </style>
+    <style>body { font-family: "Sirin Stencil", sans-serif; }</style>
   </head>
-  <body class="min-h-screen flex flex-col items-center bg-black bg-fixed bg-cover bg-center text-white" style="background-image: url('/images/bg.png');">
+  <body class="min-h-screen flex flex-col items-center bg-purple-700 text-white bg-cover bg-center bg-fixed" style="background-image:url('images/bg.png')">
     <%- include('../partials/header') %>
-    <main class="flex-1 w-full">
-      <%- body %>
-    </main>
+    <main class="flex-1 w-full"><%- body %></main>
     <%- include('../partials/footer') %>
   </body>
 </html>

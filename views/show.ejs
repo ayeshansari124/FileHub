@@ -1,10 +1,10 @@
-<div class="container mx-auto py-16 px-4 w-full max-w-4xl">
+<div class="container mx-auto py-16 px-4 max-w-4xl">
   <div class="relative rounded-2xl shadow-2xl border border-white/10 overflow-hidden">
-    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/images/top-bg.svg'); filter: brightness(1.1) contrast(1.05);"></div>
+    <div class="absolute inset-0;filter:brightness(1.1)contrast(1.05)"></div>
     <div class="absolute inset-0 bg-black/50 backdrop-blur-md"></div>
 
     <article class="relative p-10">
-      <h1 class="text-3xl font-extrabold mb-6 tracking-wide text-center break-words"><%= filename %></h1>
+      <h1 class="text-3xl font-extrabold mb-6 text-center break-words tracking-wide"><%= filename %></h1>
       <div class="text-base leading-relaxed whitespace-pre-line bg-white/10 border border-white/10 p-6 rounded-xl backdrop-blur-sm"><%= filedata %></div>
     </article>
   </div>

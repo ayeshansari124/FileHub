@@ -24,7 +24,7 @@ if (!fs.existsSync(filesDir)) fs.mkdirSync(filesDir);
 app.get("/", (req, res) => {
   fs.readdir(filesDir, (err, files) => {
     if (err) files = [];
-    res.render("index", { title: "FileHub", files });
+    res.render("index", { title: "FileHub - Hub to Manage Files", files });
   });
 });
 
