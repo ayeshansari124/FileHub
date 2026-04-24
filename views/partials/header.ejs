@@ -1,4 +1,35 @@
-<header class="w-full max-w-6xl px-8 pt-3 flex items-center justify-between">
-  <button onclick="location.href='/'" class="px-5 py-3 bg-zinc-700 hover:bg-zinc-900 rounded-full transition shadow-md">←</button>
+<header class="w-full max-w-6xl px-8 pt-4 flex items-center justify-between">
+
+  <button onclick="location.href='/'"
+    class="px-5 py-3 bg-white/10 hover:bg-white/20 rounded-full transition shadow-md">
+    ←
+  </button>
+
   <h1 class="text-xl font-bold tracking-wide">FileHub</h1>
+
+  <div class="flex gap-3">
+
+    <% if (!isLoggedIn) { %>
+
+      <button onclick="openLogin()"
+        class="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition">
+        Login
+      </button>
+
+      <button onclick="openSignup()"
+        class="px-4 py-2 bg-purple-600 hover:bg-purple-800 rounded-lg transition">
+        Signup
+      </button>
+
+    <% } else { %>
+
+      <a href="/logout"
+        class="px-4 py-2 bg-red-600 hover:bg-red-800 rounded-lg transition">
+        Logout
+      </a>
+
+    <% } %>
+
+  </div>
+
 </header>

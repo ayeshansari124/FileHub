@@ -1,17 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= title %></title>
-    <link rel="icon" href="images/favicon.ico" type="image/png" />
-    <link href="https://fonts.googleapis.com/css2?family=Sirin+Stencil&display=swap" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <style>body { font-family: "Sirin Stencil", sans-serif; }</style>
-  </head>
-  <body class="min-h-screen flex flex-col items-center bg-purple-700 text-white bg-cover bg-center bg-fixed" style="background-image:url('images/bg.png')">
-    <%- include('../partials/header') %>
-    <main class="flex-1 w-full"><%- body %></main>
-    <%- include('../partials/footer') %>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+
+  <link rel="icon" href="/images/favicon.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Sirin+Stencil&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <style>
+    body { font-family: "Sirin Stencil", sans-serif; }
+  </style>
+</head>
+<!-- LOGIN MODAL -->
+<div id="loginModal" class="fixed inset-0 bg-black/40 backdrop-blur-md hidden items-center justify-center z-50">
+  <div class="bg-black/40 border border-white/10 p-8 rounded-2xl w-full max-w-md">
+
+    <h2 class="text-2xl mb-4 text-center">Login</h2>
+
+    <form action="/login" method="POST" class="flex flex-col gap-4">
+      <input name="email" placeholder="Email" class="p-3 bg-white/10 rounded" />
+      <input name="password" type="password" placeholder="Password" class="p-3 bg-white/10 rounded" />
+      <button class="bg-purple-600 py-2 rounded">Login</button>
+    </form>
+
+    <p class="mt-4 text-center">
+      New user? 
+      <span onclick="switchToSignup()" class="text-purple-400 cursor-pointer">Signup</span>
+    </p>
+
+  </div>
+</div>
+
+<!-- SIGNUP MODAL -->
+<div id="signupModal" class="fixed inset-0 bg-black/40 backdrop-blur-md hidden items-center justify-center z-50">
+  <div class="bg-black/40 border border-white/10 p-8 rounded-2xl w-full max-w-md">
+
+    <h2 class="text-2xl mb-4 text-center">Signup</h2>
+
+    <form action="/signup" method="POST" class="flex flex-col gap-4">
+      <input name="username" placeholder="Name" class="p-3 bg-white/10 rounded" />
+      <input name="email" placeholder="Email" class="p-3 bg-white/10 rounded" />
+      <input name="password" type="password" placeholder="Password" class="p-3 bg-white/10 rounded" />
+      <button class="bg-purple-600 py-2 rounded">Signup</button>
+    </form>
+
+    <p class="mt-4 text-center">
+      Already user? 
+      <span onclick="switchToLogin()" class="text-purple-400 cursor-pointer">Login</span>
+    </p>
+
+  </div>
+</div>
+
+<body 
+  class="min-h-screen flex flex-col items-center text-white bg-cover bg-center bg-fixed"
+  style="background-image: url('/images/bg.png');"
+>
+
+  <%- include('../partials/header') %>
+
+  <main class="flex-1 w-full">
+    <%- body %>
+  </main>
+
+  <%- include('../partials/footer') %>
+
+</body>
 </html>

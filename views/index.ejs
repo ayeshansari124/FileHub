@@ -1,37 +1,102 @@
 <div class="container mx-auto py-16 px-4 w-full">
-  <!-- Upload Form -->
-  <section class="relative w-full max-w-2xl mx-auto mb-16 rounded-2xl overflow-hidden shadow-2xl border border-white/10">
-    <div class="absolute inset-0;filter:brightness(1.1)contrast(1.05)"></div>
-    <div class="absolute inset-0 bg-black/40 backdrop-blur-md"></div>
 
-    <form action="/upload" method="post" class="relative flex flex-col gap-5 p-8">
-      <h2 class="text-2xl font-bold text-center tracking-wide">Create New File</h2>
-      <input name="title" required placeholder="Enter Title" class="p-4 rounded-lg bg-white/10 placeholder:text-gray-300 focus:ring-2 focus:ring-blue-400 outline-none transition" />
-      <textarea name="desc" required placeholder="Enter Description" class="p-4 h-40 rounded-lg bg-white/10 placeholder:text-gray-300 focus:ring-2 focus:ring-blue-400 outline-none resize-none transition"></textarea>
-      <button class="bg-blue-600 hover:bg-blue-800 px-6 py-3 rounded-lg font-bold transition">Create File</button>
-    </form>
-  </section>
+  <!-- CREATE FILE -->
+  <section class="relative w-full max-w-2xl mx-auto mb-16 rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
 
-  <!-- Files Section -->
-  <section class="flex flex-wrap gap-8 justify-center">
-    <% if (files?.length) { %>
-      <% files.forEach(file => { %>
-        <div class="relative w-80 p-6 rounded-2xl border border-white/10 shadow-lg overflow-hidden transition-transform hover:scale-105 hover:shadow-2xl">
-          <div class="absolute inset-0;filter:brightness(1.15)contrast(1.05)"></div>
-          <div class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+    <div class="absolute inset-0 bg-black/20 backdrop-blur-md"></div>
 
-          <div class="relative flex flex-col gap-4">
-            <div class="text-lg font-semibold truncate"><%= file %></div>
-            <div class="flex flex-wrap gap-3 justify-between">
-              <button onclick="location.href='/files/<%= encodeURIComponent(file) %>'" class="bg-green-600 hover:bg-green-500 px-4 py-2 rounded-lg font-semibold transition">Read</button>
-              <button onclick="location.href='/edit/<%= encodeURIComponent(file) %>'" class="bg-purple-600 hover:bg-purple-500 px-4 py-2 rounded-lg font-semibold transition">Edit</button>
-              <button onclick="location.href='/delete/<%= encodeURIComponent(file) %>'" class="bg-red-600 hover:bg-red-500 px-4 py-2 rounded-lg font-semibold transition">Delete</button>
-            </div>
-          </div>
-        </div>
-      <% }) %>
+    <% if (isLoggedIn) { %>
+
+      <form action="/upload" method="post" class="relative flex flex-col gap-5 p-8">
+
+        <h2 class="text-2xl font-bold text-center">Create New File</h2>
+
+        <input name="title" required placeholder="Enter Title"
+          class="p-4 rounded-lg bg-white/10" />
+
+        <textarea name="desc" required placeholder="Enter Description"
+          class="p-4 h-40 rounded-lg bg-white/10"></textarea>
+
+        <button class="bg-blue-600 hover:bg-blue-800 px-6 py-3 rounded-lg font-bold">
+          Create File
+        </button>
+
+      </form>
+
     <% } else { %>
-      <p class="font-bold text-lg text-center mt-10">No files yet</p>
+
+      <div class="relative text-center p-10">
+        <h2 class="text-xl font-bold mb-4">Login Required</h2>
+        <button onclick="openLogin()" 
+          class="bg-purple-600 hover:bg-purple-800 px-6 py-3 rounded-lg">
+          Login
+        </button>
+      </div>
+
     <% } %>
+
   </section>
+ <script>
+  const loginModal = document.getElementById("loginModal");
+  const signupModal = document.getElementById("signupModal");
+
+  function openLogin() {
+    loginModal.classList.remove("hidden");
+    loginModal.classList.add("flex");
+  }
+
+  function openSignup() {
+    signupModal.classList.remove("hidden");
+    signupModal.classList.add("flex");
+  }
+
+  function closeModal() {
+    loginModal.classList.add("hidden");
+    signupModal.classList.add("hidden");
+  }
+
+  function switchToSignup() {
+    closeModal();
+    openSignup();
+  }
+
+  function switchToLogin() {
+    closeModal();
+    openLogin();
+  }
+
+  window.onclick = function(e) {
+    if (e.target === loginModal || e.target === signupModal) {
+      closeModal();
+    }
+  }
+</script>
+  <!-- FILES -->
+  <section class="flex flex-wrap gap-8 justify-center">
+
+    <% if (!isLoggedIn) { %>
+
+      <p>Login to see your files</p>
+
+    <% } else if (files.length === 0) { %>
+
+      <p>No files yet</p>
+
+    <% } else { %>
+
+      <% files.forEach(file => { %>
+
+        <a href="/files/<%= file._id %>"
+          class="bg-white/10 backdrop-blur-sm border border-white/10 px-6 py-4 rounded-xl w-72 text-center font-semibold hover:bg-white/20 transition shadow-lg">
+
+          <%= file.title %>
+
+        </a>
+
+      <% }) %>
+
+    <% } %>
+
+  </section>
+
 </div>

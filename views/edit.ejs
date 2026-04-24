@@ -1,26 +1,26 @@
 <div class="container mx-auto py-16 px-4 max-w-xl">
-  <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10">
-    <div class="absolute inset-0;filter:brightness(1.1)contrast(1.05)"></div>
-    <div class="absolute inset-0 bg-black/40 backdrop-blur-md"></div>
 
-    <form action="/edit" method="POST" class="relative flex flex-col gap-6 p-10">
-      <h1 class="text-3xl font-bold text-center tracking-wide">Edit File</h1>
-      <input type="hidden" name="previousName" value="<%= filename %>" />
+  <div class="relative rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
 
-      <label class="flex flex-col">
-        <span class="font-semibold mb-2">File Title</span>
-        <input id="newName" name="newName" type="text" value="<%= filename %>" required class="p-4 rounded-lg bg-white/10 text-white placeholder:text-gray-300 focus:ring-2 focus:ring-blue-400 outline-none transition" />
-      </label>
+    <div class="absolute inset-0 bg-black/20 backdrop-blur-md"></div>
 
-      <label class="flex flex-col">
-        <span class="font-semibold mb-2">Description</span>
-        <textarea id="description" name="description" rows="6" required class="p-4 rounded-lg bg-white/10 text-white placeholder:text-gray-300 focus:ring-2 focus:ring-blue-400 resize-none outline-none transition"><%= description %></textarea>
-      </label>
+    <form action="/edit/<%= id %>" method="POST" class="relative flex flex-col gap-6 p-10">
 
-      <div class="flex justify-end gap-4 mt-4">
-        <button type="button" onclick="location.href='/'" class="px-6 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg font-semibold transition">Cancel</button>
-        <button class="px-6 py-3 bg-yellow-600 hover:bg-yellow-800 rounded-lg font-bold transition">Save Changes</button>
-      </div>
+      <h1 class="text-2xl text-center">Edit File</h1>
+
+      <input name="newName" value="<%= filename %>" 
+        class="p-4 rounded bg-white/10" />
+
+      <textarea name="description" class="p-4 rounded bg-white/10">
+<%= description %>
+      </textarea>
+
+      <button class="bg-yellow-600 py-3 rounded-lg">
+        Save
+      </button>
+
     </form>
+
   </div>
+
 </div>
